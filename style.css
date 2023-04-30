@@ -1,0 +1,54 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px;
+}
+
+.display {
+  width: 1200px;
+  height: 200px;
+  border: 1px solid #000;
+  overflow: auto;
+}
+/* .displ {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: flex-start;
+  width: 400px;
+  height: 100px;
+  border: 1px solid #000;
+  overflow: auto;
+} */
+
+.displ {
+  display: grid;
+  /* grid-template-areas: "fC1 fC2 fC3 fC4 fC5 fC6 fc7 fC8 fC9 fC10 fc11 fC12 fC13 fC13"
+  "fC15 fC16 fC17 fC18 fC19 fC20 fc21 fC22 fC23 fC24 fc25 fC26 fC27 fC28"
+  "fC30 fC30 fC31 fC32 fC33 fC34 fc35 fC36 fC37 fC38 fc39 fC40 fC42 fc42"
+  "fC43 fC43 fC44 fC45 fC46 fC47 fc48 fC49 fC50 fC51 fc52 fC53 fC54 fC54"
+  "fC55 fC56 fC57 fC58 fC58 fC58 fc58 fC58 fC58 fC59 fc60 fC61 fC62 fC63"; */
+  grid-template-columns: repeat(14, 84px);
+  align-content: space-between;
+  gap: 2px 2px;
+  /* gap: 27px 64px; */
+  /* width: 81.38%; */
+  margin: 0px 0px 0px 0px;
+  /* transition: 1.4s; */
+  /* height: 281px; */
+  width: 1200px;
+  /* height: 40px; */
+  border: 1px solid #000;
+}
+
+.knop {
+  /* width: 100%; */
+  height: 10px;
+  background: #FFFFFF;
+  border: 1px solid #000;
+  /* margin: 0px 0px 0px 0px; */
+  margin: 4px;
+  padding: 10px;
+}
