@@ -77,3 +77,7 @@ body {
   margin: 5px;
   padding: 10px;
 }
+
+.activ {
+  background: rgb(170, 170, 170);
+}

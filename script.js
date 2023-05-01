@@ -51,3 +51,125 @@ for (let i = 55; i < 63; i++) {
   keyNode += '<div class="keyModel" data="' + dataKey[i][0] + '">' + dataKey[i][1] + '</div>';
 }
 document.querySelector('.keyboardRow05').innerHTML = keyNode;
+
+let cursorPosition =  {
+  'start': 0,
+  'end': 0
+};
+var getText = document.getElementById("story");
+    let kkk = ''
+    let numKey = 0
+    let switchKey = 1
+
+document.addEventListener('keydown', function(e) {
+  if ('ShiftLeft' == e.code || 'ShiftRight' == e.code) {
+    switchKey = 2
+    document.querySelectorAll('.keyboardModel .keyModel').forEach((n, i) => {
+      // n.classList.remove('activ')
+      if (n.getAttribute('data') == e.code) {
+        numKey = i
+      }
+        n.innerHTML = dataKey[i][2]
+    });
+  } else {
+    // switchKey = 1
+  }
+  document.querySelector('.keyboardModel .keyModel[data="' + dataKey[numKey][0] + '"]').classList.add('activ')
+  numKey = 0
+})
+document.addEventListener('keyup', function(e) {
+  if ('ShiftLeft' == e.code || 'ShiftRight' == e.code) {
+    switchKey = 1
+    document.querySelectorAll('.keyboardModel .keyModel').forEach((n, i) => {
+      // console.log(7777777)
+      n.classList.remove('activ')
+      // if (n.getAttribute('data') == e.code) {
+      //   numKey = i
+      // }
+        n.innerHTML = dataKey[i][switchKey]
+        // n.textContent = dataKey[i][1]
+    });
+  } else {
+    // switchKey = 2
+  }
+  // document.querySelector('.displ .knop[data="' + dataKey[numKey][0] + '"]').classList.add('activ')
+  numKey = 0
+})
+  // document.addEventListener("keypress", function (params) {
+document.onkeypress = function (params) {
+   numKey = 0
+    kkk = params.key
+    document.querySelectorAll('.keyboardModel .keyModel').forEach((n, i) => {
+      // console.log(n.getAttribute('data'))
+      if ('ShiftLeft' != n.getAttribute('data') || 'ShiftRight' != n.getAttribute('data')) {
+      n.classList.remove('activ')
+      }
+      if (n.getAttribute('data') == params.code) {
+        numKey = i
+      }
+    });
+
+    document.querySelector('.keyboardModel .keyModel[data="' + dataKey[numKey][0] + '"]').classList.add('activ')
+            getCursorPosition(getText)
+            let sub1 = getText.value.substr(0, cursorPosition.start);
+            let sub2 = getText.value.substr(cursorPosition.start);
+            if (41 == numKey || 28 == numKey) {
+              return true
+            } else {
+            document.querySelector('.display').value = sub1 + dataKey[numKey][switchKey] + sub2
+            getText.setSelectionRange(cursorPosition.start + 1, cursorPosition.end + 1);
+            }
+           return false
+};
+
+  document.addEventListener('keyup', function(e) {
+    
+  // console.log(7777777)
+  document.querySelectorAll('.keyboardModel .keyModel').forEach(n => {
+    if ('ShiftLeft' != n.getAttribute('data') || 'ShiftRight' != n.getAttribute('data')) {
+      // console.log(n.getAttribute('data'))
+          n.classList.remove('activ')
+    }
+
+  });
+})
+
+function getCursorPosition(ctrl) {
+  cursorPosition.start = ctrl.selectionStart
+  cursorPosition.end = ctrl.selectionEnd
+  // console.log(cursorPosition)
+  // console.log(getText.value)
+  // console.log(getText.value.length)
+    return cursorPosition
+}
+
+
+
+// ввод с эрана==========================
+document.querySelectorAll('.keyboardModel .keyModel').forEach(n => {
+  n.onclick = function (params) {
+    document.querySelectorAll('.keyboardModel .keyModel').forEach((n,i) => {
+      if ('ShiftLeft' != n.getAttribute('data') || 'ShiftRight' != n.getAttribute('data')) {
+        // console.log(n.getAttribute('data'))
+                  // proba.push([n.getAttribute('data'),i])
+        n.classList.remove('activ')
+        }
+      if (n.getAttribute('data') == params.code) {
+        numKey = i
+        // console.log(n.getAttribute('data'))
+      }
+    });
+  // console.log(proba)
+    let clikLit = this.textContent
+    this.classList.add('activ')
+    getCursorPosition(getText)
+    let sub1 = getText.value.substr(0, cursorPosition.start);
+    let sub2 = getText.value.substr(cursorPosition.start);
+document.querySelector('.display').value = sub1 + clikLit + sub2
+getText.setSelectionRange(cursorPosition.start + 1, cursorPosition.end + 1);
+          numKey = 0
+ setTimeout(() => {
+  this.classList.remove('activ')   
+      }, 50); 
+  }
+});
