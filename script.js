@@ -1,25 +1,31 @@
-let dataKey = [['Backquote', '`', '`'],['Digit1', '1', '1'],['Digit2', '2', '2'],
-['Digit3', '3', '3'],['Digit4', '4', '4'],['Digit5', '5', '5'],
-['Digit6', '6', '6'],['Digit7', '7', '7'],['Digit8', '8', '8'],
-['Digit9', '9', '9'],['Digit0', '0', '0'],['Minus', '-', '-'],
-['Equal', '=', '='],['Backspace', 'Backspace', 'Backspace', 'Backspace', 'Backspace'],
-['Tab', 'Tab', 'Tab'],['KeyQ', 'q', 'Q'],['KeyW', 'w', 'W'],
-['KeyE', 'e', 'E'],['KeyR', 'r', 'R'],['KeyT', 't', 'T'],
-['KeyY', 'y', 'Y'],['KeyU', 'u', 'U'],['KeyI', 'i', 'I'],
-['KeyO', 'o', 'O'],['KeyP', 'p', 'P'],['BracketLeft', '[', '['],
-['BracketRight', ']', ']'],['Backslash', '\\', '\\'],['Delete', 'Delete', 'Delete'],
-['CapsLock', 'CapsLock', 'CapsLock'],['KeyA', 'a', 'A'],['KeyS', 's', 'S'],
-['KeyD', 'd', 'D'],['KeyF', 'f', 'F'],['KeyG', 'g', 'G'],['KeyH', 'h', 'H'],
-['KeyJ', 'j', 'J'],['KeyK', 'k', 'K'],['KeyL', 'l', 'L'],
-['Semicolon', ';', ';'],['Quote', "'", "'"],['Enter', 'Enter', 'Enter'],
-['ShiftLeft', 'Shift', 'Shift'],['KeyZ', 'z', 'Z'],['KeyX', 'x', 'X'],
-['KeyC', 'c', 'C'],['KeyV', 'v', 'V'], ['KeyB', 'b', 'B'],
-['KeyN', 'n', 'N'],['KeyM', 'm', 'M'],['Comma', ',', ','],['Period', '.', '.'],
-['Slash', '/', '/'],['ArrowUp', '&uarr;', '&uarr;'],
-['ShiftRight', 'Shift', 'Shift'],['ControlLeft', 'Control', 'Control'],
-['AltLeft', 'Alt', 'Alt'],['Space', ' ', ' '], ['AltRight', 'Alt', 'Alt'],
-['ArrowLeft', '&larr;', '&larr;'],['ArrowDown', '&darr;', '&darr;'],
-['ArrowRight', '&rarr;', '&rarr;'],['ControlRight', 'Control', 'Control']]
+let dataKey = [['Backquote','`','~','ё','Ё'],['Digit1','1','!','1','!'],
+['Digit2','2','@','2','"'],['Digit3','3','#','3','№'],['Digit4','4','$','4',';'],
+['Digit5','5','%','5','%'],['Digit6','6','^','6',':'],['Digit7','7','&','7','?'],
+['Digit8','8','*','8','*'],['Digit9','9','(','9','('],['Digit0','0',')','0',')'],
+['Minus','-','_','-','_'],['Equal','=','+','=','+'],
+['Backspace','Backspace','Backspace','Backspace','Backspace'],
+['Tab','Tab','Tab','Tab','Tab'],['KeyQ','q','Q','й','Й'],['KeyW','w','W','ц','Ц'],
+['KeyE','e','E','у','У'],['KeyR','r','R','к','К'],['KeyT','t','T','е','Е'],
+['KeyY','y','Y','н','Н'],['KeyU','u','U','г','Г'],['KeyI','i','I','ш','Ш'],
+['KeyO','o','O','щ','Щ'],['KeyP','p','P','з','З'],['BracketLeft','[','{','х','Х'],
+['BracketRight',']','}','ъ','Ъ'],['Backslash','\\','|','\\','/'],
+['Delete','Delete','Delete','Delete','Delete'],
+['CapsLock','CapsLock','CapsLock','CapsLock','CapsLock'],['KeyA','a','A','ф','Ф'],
+['KeyS','s','S','ы','Ы'],['KeyD','d','D','в','В'],['KeyF','f','F','а','А'],
+['KeyG','g','G','п','П'],['KeyH','h','H','р','Р'],['KeyJ','j','J','о','О'],
+['KeyK','k','K','л','Л'],['KeyL','l','L','д','Д'],['Semicolon',';',':','ж','Ж'],
+['Quote',"'",'"',"э","Э"],['Enter','Enter','Enter','Enter','Enter'],
+['ShiftLeft','Shift','Shift','Shift','Shift'],['KeyZ','z','Z','я','Я'],
+['KeyX','x','X','ч','Ч'],['KeyC','c','C','c','C'],['KeyV','v','V','м','М'],
+['KeyB','b','B','и','И'],['KeyN','n','N','т','Т'],['KeyM','m','M','ь','Ь'],
+['Comma',',','<','б','Б'],['Period','.','>','ю','Ю'],['Slash','/','?','.',','],
+['ArrowUp','&uarr;','&uarr;','&uarr;','&uarr;'],['ShiftRight','Shift','Shift','Shift','Shift'],
+['ControlLeft','Control','Control','Control','Control'],['AltLeft','Alt','Alt','Alt','Alt'],
+['Space',' ',' ',' ',' '], ['AltRight','Alt','Alt','Alt','Alt'],
+['ArrowLeft','&larr;','&larr;','&larr;','&larr;'],['ArrowDown','&darr;','&darr;','&darr;','&darr;'],
+['ArrowRight','&rarr;','&rarr;','&rarr;','&rarr;'],
+['ControlRight','Control','Control','Control','Control']]
+
 
 let keyNode = ''
 keyNode = '<textarea class="display" id="story" rows="5" cols="30"></textarea><div class="keyboardModel"></div>';
@@ -63,6 +69,22 @@ var getText = document.getElementById("story");
 
 document.addEventListener('keydown', function(e) {
   if (e.repeat) return;
+  let switchAltLeft = document.querySelector('.keyboardModel .keyModel[data="AltLeft"]').classList.contains('activ')
+  let switchAltRight = document.querySelector('.keyboardModel .keyModel[data="AltRight"]').classList.contains('activ')
+  let switchControlLeft = document.querySelector('.keyboardModel .keyModel[data="ControlLeft"]').classList.contains('activ')
+  let switchControlRight = document.querySelector('.keyboardModel .keyModel[data="ControlRight"]').classList.contains('activ')
+  // console.log(document.querySelector('.keyboardModel .keyModel[data="AltLeft"]').classList.contains('activ'))
+  if (('AltRight' == e.code && switchControlRight) || ('AltLeft' == e.code && switchControlLeft) || ('ControlRight' == e.code && switchAltRight) || ('ControlLeft' == e.code && switchAltLeft)) {
+    if (switchKey < 3) {
+      console.log(switchKey)
+          switchKey = switchKey + 2
+    } else {
+      switchKey = switchKey - 2
+    }
+    document.querySelectorAll('.keyboardModel .keyModel').forEach((n, i) => {
+      n.innerHTML = dataKey[i][switchKey]
+  });
+  }
    if ('CapsLock' == e.code) {
     if (switchKey == 1 || switchKey == 3) {
       console.log(switchKey)
@@ -83,7 +105,10 @@ document.addEventListener('keydown', function(e) {
         n.innerHTML = dataKey[i][switchKey]
     });
   }
-
+  if ('AltLeft' == e.code) {
+      e.preventDefault()
+      console.log(e.code)
+  }
   if ('Tab' == e.code) {
     getCursorPosition(getText)
     let sub1 = getText.value.substr(0, cursorPosition.start);
