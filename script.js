@@ -28,7 +28,10 @@ let dataKey = [['Backquote','`','~','ё','Ё'],['Digit1','1','!','1','!'],
 
 
 let keyNode = ''
-keyNode = '<textarea class="display" id="story" rows="5" cols="30"></textarea><div class="keyboardModel"></div>';
+keyNode = '<h1>Виртуальная клавиатура</h1>'
+keyNode += '<textarea class="display" id="story" rows="5" cols="30"></textarea><div class="keyboardModel"></div>';
+keyNode += '<h4>Клавиатура создана в операционной системе Windows</h4>'
+keyNode += '<h4>Для переключения языка комбинация: левыe ctrl + alt</h4>'
 document.querySelector('body').innerHTML = keyNode
 keyNode = '<div class="keyboardRow01"></div><div class="keyboardRow02"></div><div class="keyboardRow03"></div><div class="keyboardRow04"></div><div class="keyboardRow05"></div>'
 document.querySelector('.keyboardModel').innerHTML = keyNode
@@ -66,7 +69,17 @@ var getText = document.getElementById("story");
     let kkk = ''
     let numKey = 0
     let switchKey = 1
-
+    // localStorage.removeItem('switchKey');
+    if (localStorage.getItem('switchKey') != null) {
+            switchKey = parseInt(localStorage.getItem('switchKey'), 10);
+    }
+    function setLocalStorage() {
+      localStorage.setItem('switchKey', switchKey);
+    }
+    window.addEventListener('beforeunload', setLocalStorage)
+    document.querySelectorAll('.keyboardModel .keyModel').forEach((n, i) => {
+      n.innerHTML = dataKey[i][switchKey]
+    });
 document.addEventListener('keydown', function(e) {
   if (e.repeat) return;
   let switchAltLeft = document.querySelector('.keyboardModel .keyModel[data="AltLeft"]').classList.contains('activ')
