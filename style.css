@@ -8,7 +8,7 @@ body {
 
 .display {
   width: 800px;
-  height: 200px;
+  height: 140px;
   border: 1px solid #000;
   overflow: auto;
 }
@@ -72,12 +72,20 @@ body {
   height: 10px;
   background: #FFFFFF;
   border: 1px solid #000;
+  font-family: 'Inter', sans-serif;
   /* margin: 0px 0px 0px 0px; */
   cursor: pointer;
   margin: 5px;
   padding: 10px;
+  transition: 0.3s;
+}
+
+h4 {
+  margin: 5px;
 }
 
 .activ {
+  border-radius: 14px;
   background: rgb(170, 170, 170);
+  transition: 0.3s;
 }
